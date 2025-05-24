@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Todo;
 
 use App\Http\Controllers\Controller;
+use App\Models\Todo;
 use Illuminate\Http\Request;
 
 class TodoContoller extends Controller
@@ -12,7 +13,8 @@ class TodoContoller extends Controller
      */
     public function index()
     {
-        return view("todo.app");
+        $data = Todo::orderBy('task', 'asc')->get();
+        return view("todo.app", ['data' => $data]);
     }
 
     /**
@@ -33,8 +35,14 @@ class TodoContoller extends Controller
         ], [
             'task.required' => 'wajib disi',
             'task.min' => 'minimal 3 karakter'
-
         ]);
+
+        $data = [
+            'task' => $request->input('task')
+        ];
+
+        Todo::create($data);
+        return redirect()->route('todo')->with('success', 'berhasil simpan data');
     }
 
     /**

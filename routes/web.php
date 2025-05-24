@@ -14,6 +14,6 @@ Route::get('/testing', [TestingController::class, 'index']);
 //     return view('todo.app');
 // });
 
-Route::get('/todo', [TodoContoller::class, 'index']);
+Route::get('/todo', [TodoContoller::class, 'index'])->name('todo');
 
-Route::post('/todo', [TodoContoller::class, 'store']);
+Route::post('/todo', [TodoContoller::class, 'store'])->name('todo.post');

@@ -41,6 +41,12 @@
                 <div class="card mb-3">
                     <div class="card-body">
 
+                        @if (session('success'))
+                            <div class="alert alert-danger">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
@@ -55,7 +61,7 @@
 
 
                         <!-- 02. Form input data -->
-                        <form id="todo-form" action="{{ url('/todo') }}" method="post">
+                        <form id="todo-form" action="{{ route('todo.post') }}" method="post">
                             @csrf
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" name="task" id="todo-input"
@@ -81,40 +87,43 @@
                         </form>
 
                         <ul class="list-group mb-4" id="todo-list">
-                            <!-- 04. Display Data -->
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <span class="task-text">Coding</span>
-                                <input type="text" class="form-control edit-input" style="display: none;"
-                                    value="Coding">
-                                <div class="btn-group">
-                                    <button class="btn btn-danger btn-sm delete-btn">✕</button>
-                                    <button class="btn btn-primary btn-sm edit-btn" data-bs-toggle="collapse"
-                                        data-bs-target="#collapse-1" aria-expanded="false">✎</button>
-                                </div>
-                            </li>
-                            <!-- 05. Update Data -->
-                            <li class="list-group-item collapse" id="collapse-1">
-                                <form action="" method="POST">
-                                    <div>
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control" name="task" value="Coding">
-                                            <button class="btn btn-outline-primary" type="button">Update</button>
-                                        </div>
+                            @foreach ($data as $item)
+                                <!-- 04. Display Data -->
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="task-text">{{ $item->task }}</span>
+                                    <input type="text" class="form-control edit-input" style="display: none;"
+                                        value={{ $item->task }}>
+                                    <div class="btn-group">
+                                        <button class="btn btn-danger btn-sm delete-btn">✕</button>
+                                        <button class="btn btn-primary btn-sm edit-btn" data-bs-toggle="collapse"
+                                            data-bs-target="#collapse-1" aria-expanded="false">✎</button>
                                     </div>
-                                    <div class="d-flex">
-                                        <div class="radio px-2">
-                                            <label>
-                                                <input type="radio" value="1" name="is_done"> Selesai
-                                            </label>
+                                </li>
+                                <!-- 05. Update Data -->
+                                <li class="list-group-item collapse" id="collapse-1">
+                                    <form action="" method="POST">
+                                        <div>
+                                            <div class="input-group mb-3">
+                                                <input type="text" class="form-control" name="task"
+                                                    value={{ $item->task }}>
+                                                <button class="btn btn-outline-primary" type="button">Update</button>
+                                            </div>
                                         </div>
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" value="0" name="is_done"> Belum
-                                            </label>
+                                        <div class="d-flex">
+                                            <div class="radio px-2">
+                                                <label>
+                                                    <input type="radio" value="1" name="is_done"> Selesai
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" value="0" name="is_done"> Belum
+                                                </label>
+                                            </div>
                                         </div>
-                                    </div>
-                                </form>
-                            </li>
+                                    </form>
+                                </li>
+                            @endforeach
                         </ul>
 
 
