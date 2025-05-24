@@ -75,7 +75,7 @@ class TodoContoller extends Controller
 
         $data = [
             'task' => $request->input('task'),
-            'is_done' => $request->input('is_done', 0) // Default ke 0 jika null
+            'is_done' => $request->input('is_done') // Default ke 0 jika null
         ];
 
         Todo::where('id', $id)->update($data);
@@ -87,6 +87,7 @@ class TodoContoller extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Todo::where('id', $id)->delete();
+        return redirect()->route('todo')->with('success', 'berhasil menghapus data');
     }
 }

@@ -19,3 +19,5 @@ Route::get('/todo', [TodoContoller::class, 'index'])->name('todo');
 Route::post('/todo', [TodoContoller::class, 'store'])->name('todo.post');
 
 Route::put('/todo/{id}', [TodoContoller::class, 'update'])->name('todo.update');
+
+Route::delete('/todo/{id}', [TodoContoller::class, 'destroy'])->name('todo.destroy');
