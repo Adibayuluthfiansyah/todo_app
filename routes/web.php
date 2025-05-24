@@ -17,3 +17,5 @@ Route::get('/testing', [TestingController::class, 'index']);
 Route::get('/todo', [TodoContoller::class, 'index'])->name('todo');
 
 Route::post('/todo', [TodoContoller::class, 'store'])->name('todo.post');
+
+Route::put('/todo/{id}', [TodoContoller::class, 'update'])->name('todo.update');
