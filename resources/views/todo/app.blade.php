@@ -61,7 +61,7 @@
                                 <input type="text" class="form-control" name="task" id="todo-input"
                                     placeholder="Tambah task baru" required value="{{ old('task') }}">
                                 <button class="btn btn-primary" type="submit">
-                                    Simpann
+                                    Simpan
                                 </button>
                             </div>
                         </form>
