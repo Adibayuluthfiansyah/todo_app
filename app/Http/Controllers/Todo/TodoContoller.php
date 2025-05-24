@@ -42,7 +42,7 @@ class TodoContoller extends Controller
         ];
 
         Todo::create($data);
-        return redirect()->route('todo')->with('success', 'berhasil simpan data');
+        return redirect()->route('todo')->with('success', 'Berhasil simpan data');
     }
 
     /**
@@ -79,7 +79,7 @@ class TodoContoller extends Controller
         ];
 
         Todo::where('id', $id)->update($data);
-        return redirect()->route('todo')->with('success', 'berhasil update data');
+        return redirect()->route('todo')->with('success', 'Berhasil update data');
     }
 
     /**
@@ -88,6 +88,6 @@ class TodoContoller extends Controller
     public function destroy(string $id)
     {
         Todo::where('id', $id)->delete();
-        return redirect()->route('todo')->with('success', 'berhasil menghapus data');
+        return redirect()->route('todo')->with('success', 'Berhasil menghapus data');
     }
 }
